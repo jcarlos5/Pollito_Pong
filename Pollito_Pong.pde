@@ -38,7 +38,7 @@ PGraphics user, jr, div;
 
 public class Pelota{
   // Configuración inicial
-  float ballX             = width/2;
+  float ballX             = width/2 - width/4;
   float ballY             = 0;
   float ballSpeedVert     = 0;
   float ballSpeedHorizon  = 0;
