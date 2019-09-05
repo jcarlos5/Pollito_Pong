@@ -22,7 +22,7 @@ Raqueta rckjr         = new Raqueta();
 Escenario escjr       = new Escenario(color(44, 62, 80));
 boolean gameOverJr    = false;
 
-// AJUESTES DEL JUEGO
+// AJUSTES DEL JUEGO
 float gravity         = .3;
 float airfriction     = 0.00001;
 float friction        = 0.1;
@@ -38,7 +38,7 @@ PGraphics user, jr, div;
 
 public class Pelota{
   // Configuración inicial
-  float ballX             = width/2 - width/4;
+  float ballX             = width/4;
   float ballY             = 0;
   float ballSpeedVert     = 0;
   float ballSpeedHorizon  = 0;
@@ -119,6 +119,10 @@ public class Pelota{
     ballSpeedHorizon -= (ballSpeedHorizon * friction);
   }
   
+  // noStroke no tener bordes
+  // fill = color de relleno
+  //rectMode(corner) dibujar el rextangulo desde la esquina
+  //health = vida
   void drawHealthBar(PGraphics screen) {
     screen.noStroke();
     screen.fill(189, 195, 199);
@@ -134,6 +138,7 @@ public class Pelota{
     screen.rect(ballX-(healthBarWidth/2), ballY - 30, healthBarWidth*(health/maxHealth), 5);
   }
   
+  //
   void decreaseHealth() {
     health -= healthDecrease;
     if (health <= 0) {
@@ -152,7 +157,7 @@ class Raqueta{
   color racketColor   = color(0);
   float racketWidth   = 100;
   float racketHeight  = 10;
-  int IASpeed         = 10;
+  int IASpeed         = 25;
     
   void drawRacket(PGraphics screen) {
     screen.fill(racketColor);
@@ -246,13 +251,8 @@ class Escenario{
       int randY = round(random(0, height-randHeight));
       
       // {gapWallX, gapWallY, gapWallWidth, gapWallHeight, scored}
-      if(screen == user){
-        int[] randWall = {width/2 -5 , randY, wallWidth, randHeight, 0};
-        walls.add(randWall);
-      }else{
-        int[] randWall = {width/2, randY, wallWidth, randHeight, 0};
-        walls.add(randWall);
-      }
+      int[] randWall = {width/2, randY, wallWidth, randHeight, 0};
+      walls.add(randWall);
       
       lastAddTime = millis();
     }
@@ -296,7 +296,7 @@ class Escenario{
     screen.rect(gapWallX, gapWallY+gapWallHeight, gapWallWidth, height-(gapWallY+gapWallHeight), 15, 15, 0, 0);
     
     if(screen == jr){
-      rckjr. IARaqueta(gapWallX, gapWallY+gapWallHeight, gapWallWidth, pltjr);
+      rckjr.IARaqueta(gapWallX, gapWallY+gapWallHeight, gapWallWidth, pltjr);
     }
   }
   
